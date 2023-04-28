@@ -1,3 +1,6 @@
+using home_work_49.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace home_work_49
 {
     public class Program
@@ -7,6 +10,8 @@ namespace home_work_49
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            string conntection = builder.Configuration.GetConnectionString("DefaulConnection");
+            builder.Services.AddDbContext<ZooContext>(options => options.UseSqlite(conntection));
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
